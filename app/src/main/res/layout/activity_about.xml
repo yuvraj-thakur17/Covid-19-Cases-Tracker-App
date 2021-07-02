@@ -41,7 +41,7 @@
                         android:layout_height="110dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/my_image"
+                        android:src="@drawable/final_pic"
                         app:civ_border_color="#fff"
                         app:civ_border_width="0.7dp" />
 

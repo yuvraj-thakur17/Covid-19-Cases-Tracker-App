@@ -5,11 +5,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +37,8 @@ public class SplashActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
         getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.navigationBarColor));
+
+        checkConnection();
 
         CheckForUpdate();
 
@@ -119,4 +125,25 @@ public class SplashActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    public void checkConnection(){
+        ConnectivityManager manager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = manager.getActiveNetworkInfo();
+
+        if(null!=activeNetwork){
+        }
+        if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
+            Toast.makeText(this, "wifi enabled", Toast.LENGTH_SHORT).show();
+        }
+        if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE){
+            Toast.makeText(this, "mobile enabled", Toast.LENGTH_SHORT).show();
+        }
+
+        else {
+            Toast.makeText(this, "No internet", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
 }
